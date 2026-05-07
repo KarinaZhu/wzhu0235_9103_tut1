@@ -1,51 +1,59 @@
-# wzhu0235_9103_tut1
-My first repository for IDEA9103
+# Week 8 Quiz
+- [IDEA9103] Tutorial 1
+- Unikey: wzhu0235
+- Name: Karina Zhu
 
-This is my first local change to the repo!
 
-# Header 1
-## Header 2
-### Header 3
-#### Header 4
-##### Heder 5
-###### Header 6
 
-**Bold Text** or __Bold Text__
-*Italic Text* or _Italic Text_
+## Part 1 – Imaging Technique Inspiration
+> As someone who believes creative coding can reveal the beauty of the cyber world, I am particularly inspired by artworks that combine generative visuals with sound design.
 
-- Item 1
-- Item 2
-    - Subitem 2.1
-    - Subitem 2.2
+I am interested in how **glitch sounds** and **distorted visuals** can interact together, creating an immersive digital atmosphere. For this assignment, I want to explore the Pixel Sorting technique. This technique is suitable for both reinterpreting existing artworks and creating original experimental pieces. By importing my own images into p5.js, I can manipulate pixels to create unexpected visual distortions and abstract cyber aesthetics.
 
-* Item 1
-* Item 2
-    * Subitem 2.1
-    * Subitem 2.2
+![Inspiration 1](images/Inspiration1.jpg)
+![Inspiration 2](images/Inspiration2.gif)
 
-1. First Item
-2. Second Item
-3. Third Item
-
-Text inbetween
-
-1. First Item
-1. Second Item
-1. Second Second Item
-1. Third Item
-
-[Google Homepage](https://www.google.com/)
-
-![An image of a cat](https://placecats.com/300/200)
-
-![An image of Mona Lisa](images/Mona_Lisa_by_Leonardo_da_Vinci_500_x_700.jpg)
-
-Make sure to run `setup()` first.
-
+## Part 2 – Coding Technique Exploration
+To achieve this visual effect, I explored the `loadPixels()` function in p5.js. This function loads pixel data from the canvas into the **pixels[ ] array**, allowing direct manipulation of image information. By editing pixel values, artists can create effects such as duplication, distortion, glitching, and pixel sorting. This coding technique could help me create reactive cyber visuals that change over time or respond to sound input. Combined with sound design, it could produce an immersive audiovisual experience where both the image and audio influence each other dynamically.
+### Example Code Reference
 ```
-function helloWorld() {
-    console.log("Hello World!");
+let img;
+
+// Load the image.
+function preload() {
+  img = loadImage('/assets/rockies.jpg');
+}
+
+function setup() {
+  createCanvas(100, 100);
+
+  // Display the image.
+  image(img, 0, 0, 100, 100);
+
+  // Get pixel density.
+  let d = pixelDensity();
+
+  // Calculate halfway index.
+  let halfImage = 4 * (d * width) * (d * height / 2);
+
+  // Load pixel data.
+  loadPixels();
+
+  // Copy top half of image to bottom half.
+  for (let i = 0; i < halfImage; i += 1) {
+    pixels[i + halfImage] = pixels[i];
+  }
+
+  // Update canvas.
+  updatePixels();
 }
 ```
 
-> This is a quote from a book.
+### References
+[p5.js loadPixels( ) function](https://p5js.org/reference/p5/loadPixels/)
+
+[Javascript sort function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort)
+
+[Inspiration 1](https://pin.it/5T7GUlh9m) 
+
+[Inspiration 2](https://pin.it/vlcHK9SS1)
